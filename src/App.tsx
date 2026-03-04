@@ -6,9 +6,9 @@ import { NavTab } from "./components/layouts/NavTab";
 import HomePage from "./pages/HomePage";
 import HistoryPage from "./pages/HistoryPage";
 import RemindersPage from "./pages/RemindersPage";
-import ProfilePage from "./pages/ProfilPage";
+import ProfilePage from "./pages/ProfilePage";
 import "./index.css"
-import { SketchyDefs } from "./components/ui/SketchuDefs";
+import { SketchyDefs } from "./components/ui/SketchyDefs";
 
 export default function App() {
   const [tab, setTab] = useState<TabId>("home");

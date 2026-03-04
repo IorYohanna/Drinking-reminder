@@ -1,0 +1,34 @@
+@import "tailwindcss";
+
+.circle-progress-container {
+  @apply relative flex items-center justify-center w-[240px] h-[240px];
+}
+
+.circle-bg {
+  @apply fill-none stroke-[#e4d4bf] stroke-[6] transition-all duration-500;
+  stroke-dasharray: 8 4;
+}
+
+.circle-indicator {
+  @apply fill-none stroke-[7] transition-[stroke-dasharray] duration-700 ease-in-out;
+  stroke-linecap: round;
+  filter: url(#sk); 
+}
+
+.circle-inner-border {
+  @apply w-59 h-59 rounded-full border-[3px] border-p-ink absolute pointer-events-none;
+  filter: url(#sk2);
+}
+
+.progress-text-pct {
+  @apply font-caveat text-[42px] font-bold text-white leading-none;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
+}
+
+.progress-text-sub {
+  @apply font-caveat text-[22px] text-white/80 mt-0.5;
+}
+
+.progress-text-label {
+  @apply font-caveat text-base text-white/60;
+}

@@ -1,3 +1,5 @@
+import "./SketchyDefs.css";
+
 export const SketchyDefs = () => (
   <svg width="0" height="0" className="absolute pointer-events-none">
     <defs>

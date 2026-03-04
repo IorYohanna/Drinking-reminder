@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+.modal-overlay {
+  @apply fixed inset-0 z-50 flex items-end justify-center bg-black/45;
+  backdrop-filter: blur(2px); 
+}
+
+.modal-content {
+  @apply bg-p-paper border-[3px] border-p-ink rounded-t-[20px] 
+         w-full max-w-[420px] px-5 pt-6 pb-10 max-h-[88vh] 
+         overflow-y-auto relative;
+  filter: url(#sk2);
+
+  animation: slide-up 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slide-up {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+.modal-close-btn {
+  @apply font-caveat text-[26px] 
+  bg-transparent border-none cursor-pointer 
+  text-p-muted hover:text-p-ink transition-colors;
+}

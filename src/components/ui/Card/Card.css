@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+.card-container {
+  @apply bg-p-paper border-[2.5px] border-p-ink rounded-lg py-3.5 px-4;
+  filter: url(#sk);
+  transition: transform 0.1s ease-in-out;
+}
+
+.card-interactive {
+  @apply cursor-pointer active:translate-y-0.5 active:translate-x-0.5;
+}
+
+.card-static {
+  @apply cursor-default;
+}
