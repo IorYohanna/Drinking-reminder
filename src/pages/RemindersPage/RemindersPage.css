@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+.reminder-card {
+  @apply flex justify-between items-center py-3 px-4 transition-all duration-300;
+}
+
+.reminder-disabled {
+  @apply opacity-50 grayscale-[0.5];
+}
+
+.icon-grid {
+  @apply flex flex-wrap gap-2;
+}
+
+.icon-selector-btn {
+  @apply text-2xl p-2 border-2 rounded-lg cursor-pointer transition-all duration-200;
+  filter: url(#sk);
+}
+
+.icon-selector-btn.active {
+  @apply border-p-green bg-p-greenLight scale-110;
+}
+
+.time-input-custom {
+  @apply w-full font-caveat text-[22px] bg-transparent border-2 border-p-ink 
+         rounded-md py-2 px-3 outline-none text-p-ink box-border;
+}

@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+.profile-container {
+  @apply flex flex-col gap-3.5 p-4 pb-6;
+}
+
+.profile-avatar {
+  @apply w-18 h-18 rounded-full border-[3px] border-p-ink bg-p-blue 
+         flex items-center justify-center text-[38px] shrink-0;
+  filter: url(#sk2);
+}
+
+.unit-btn {
+  @apply border-2 border-p-ink rounded-md py-2 px-2.5 font-caveat text-[15px] 
+         cursor-pointer transition-colors;
+  filter: url(#sk);
+}
+
+.unit-btn.active {
+  @apply bg-p-ink text-white;
+}
+
+.suggested-btn {
+  @apply mt-1.5 bg-p-greenLight text-p-green border-2 border-p-green 
+         rounded-md py-1.5 px-3.5 font-caveat text-base cursor-pointer;
+  filter: url(#sk);
+}
+
+.danger-btn {
+  @apply bg-transparent text-p-accent border-2 border-p-accent 
+         rounded-lg py-2 px-4 font-caveat text-[17px] cursor-pointer;
+  filter: url(#sk);
+}
