@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+.summary-container {
+  @apply flex gap-3 w-full justify-center mt-12 relative px-2;
+}
+
+.summary-card {
+  @apply bg-[#2D466E] rounded-[20px] flex-1 max-w-27.5 h-30 flex flex-col items-center justify-end pb-4 relative shadow-inner transition-transform duration-300 hover:-translate-y-1;
+}
+
+.summary-img-base {
+  @apply absolute object-contain transition-transform duration-300 hover:scale-110 drop-shadow-md;
+}
+
+.summary-text {
+  @apply text-[#F5F0E8] text-[13px] text-center leading-tight font-['Nova_Square',sans-serif];
+}

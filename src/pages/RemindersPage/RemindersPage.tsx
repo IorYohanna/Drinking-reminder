@@ -68,15 +68,15 @@ export default function RemindersPage({ reminders, setReminders }: RemindersPage
     <div className="flex flex-col gap-3 p-4 pb-6">
       <header className="flex justify-between items-center">
         <div>
-          <h2 className="font-caveat text-[32px] font-bold text-p-ink">Reminders 🔔</h2>
-          <p className="font-caveat text-[15px] text-p-muted">{activeCount} active</p>
+          <h2 className="text-[32px] font-bold">Reminders 🔔</h2>
+          <p className="text-[15px]">{activeCount} active</p>
         </div>
         <Btn onClick={() => setShowAdd(true)} className="py-2 px-4 text-lg">+ Add</Btn>
       </header>
 
-      <Card className="flex gap-2.5 items-start py-3 px-3.5 bg-p-paper/50 border-p-ink/20">
+      <Card className="flex gap-2.5 items-start py-3 px-3.5">
         <span className="text-xl shrink-0">💡</span>
-        <p className="font-caveat text-sm text-p-muted m-0">
+        <p className="text-sm m-0">
           Visual reminders shown as a banner in the app. For phone notifications, 
           use your device's built-in clock app.
         </p>
@@ -84,7 +84,7 @@ export default function RemindersPage({ reminders, setReminders }: RemindersPage
 
       <section className="flex flex-col gap-2 mt-2">
         {sortedReminders.length === 0 ? (
-          <div className="text-center py-10 font-caveat text-xl text-p-muted">No reminders yet!</div>
+          <div className="text-center py-10 text-xl">No reminders yet!</div>
         ) : (
           sortedReminders.map(r => (
             <Card 
@@ -94,15 +94,15 @@ export default function RemindersPage({ reminders, setReminders }: RemindersPage
               <div className="flex items-center gap-3">
                 <span className="text-[28px]">{r.icon}</span>
                 <div>
-                  <div className="font-caveat text-2xl font-bold text-p-ink leading-tight">{r.time}</div>
-                  <div className="font-caveat text-[15px] text-p-muted">{r.label}</div>
+                  <div className="text-2xl font-bold leading-tight">{r.time}</div>
+                  <div className="text-[15px]">{r.label}</div>
                 </div>
               </div>
               <div className="flex items-center gap-3">
                 <ToggleBtn enabled={r.enabled} onChange={() => toggleReminder(r.id)} />
                 <button 
                   onClick={() => removeReminder(r.id)} 
-                  className="bg-transparent border-none cursor-pointer text-lg text-p-muted hover:text-p-accent transition-colors"
+                  className="bg-transparent border-none cursor-pointer text-lg transition-colors"
                 >
                   🗑️
                 </button>
@@ -115,7 +115,7 @@ export default function RemindersPage({ reminders, setReminders }: RemindersPage
       <Modal open={showAdd} onClose={resetForm} title="New reminder ✏️">
         <div className="flex flex-col gap-4">
           <div>
-            <label className="font-caveat text-base text-p-muted mb-1.5 block">Time</label>
+            <label className="text-base mb-1.5 block">Time</label>
             <input 
               type="time" 
               value={newTime} 
@@ -125,12 +125,12 @@ export default function RemindersPage({ reminders, setReminders }: RemindersPage
           </div>
           
           <div>
-            <label className="font-caveat text-base text-p-muted mb-1.5 block">Label</label>
+            <label className="text-base mb-1.5 block">Label</label>
             <TI value={newLabel} onChange={e => setNewLabel(e.target.value)} placeholder="Morning boost..." />
           </div>
 
           <div>
-            <label className="font-caveat text-base text-p-muted mb-2 block">Icon</label>
+            <label className="text-base mb-2 block">Icon</label>
             <div className="icon-grid">
               {ICONS.map(ic => (
                 <button 

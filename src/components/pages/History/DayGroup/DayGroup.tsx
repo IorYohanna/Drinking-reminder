@@ -21,11 +21,11 @@ export const DayGroup = ({ day, logs, goal, onRemove, onClear }: DayGroupProps) 
   return (
     <div className="mb-4">
       <div className="flex justify-between items-center mb-1.5">
-        <span className="font-caveat text-[19px] font-bold text-p-ink">
+        <span className="text-[19px] font-bold">
           {isGoalMet ? "✅ " : ""}{formattedDate}
         </span>
         <div className="flex items-center gap-2">
-          <span className={`font-caveat text-lg ${isGoalMet ? 'text-p-green' : 'text-p-muted'}`}>
+          <span className={`text-lg ${isGoalMet ? '' : ''}`}> 
             {(totalMl / 1000).toFixed(2)}L
           </span>
           <button onClick={onClear} className="bg-none border-none cursor-pointer text-base opacity-70 hover:opacity-100">
@@ -41,15 +41,15 @@ export const DayGroup = ({ day, logs, goal, onRemove, onClear }: DayGroupProps) 
             <Card key={log.id} className="flex justify-between items-center py-2 px-3.5">
               <div className="flex items-center gap-2.5">
                 <span className="text-xl">{type.icon}</span>
-                <span className="font-caveat text-[17px] text-p-ink">
+                <span className="text-[17px]">
                   {log.ml}ml — {type.label}
                 </span>
               </div>
               <div className="flex items-center gap-2">
-                <span className="font-caveat text-sm text-p-muted">
+                <span className="text-sm">
                   {new Date(log.ts).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
                 </span>
-                <button onClick={() => onRemove(log.id)} className="bg-none border-none cursor-pointer text-p-muted">✕</button>
+                <button onClick={() => onRemove(log.id)} className="bg-none border-none cursor-pointer">✕</button>
               </div>
             </Card>
           );

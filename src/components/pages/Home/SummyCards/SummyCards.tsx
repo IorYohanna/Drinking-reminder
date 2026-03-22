@@ -1,4 +1,4 @@
-import { Card } from "../../../ui/Card"; 
+import "./SummyCards.css";
 
 interface SummaryCardsProps {
   stats: {
@@ -14,20 +14,48 @@ export const SummaryCards = ({ stats, goal }: SummaryCardsProps) => {
     ? Math.round((Date.now() - lastLog.ts) / 60000) 
     : null;
 
-  const items = [
-    { label: "Drinks",    val: stats.todayLogs.length,              unit: "today" },
-    { label: "Remaining", val: `${Math.max(0, +(goal - stats.totalL).toFixed(2))}L`, unit: "to go" },
-    { label: "Last",      val: minutesAgo !== null ? `${minutesAgo}m` : "—", unit: "ago" },
+  const remainingL = Math.max(0, +(goal - stats.totalL).toFixed(2));
+
+  const items =[
+    { 
+      val: stats.todayLogs.length, 
+      line2: "today", 
+      line3: "Drinks", 
+      img: "/src/assets/water1.png",
+      imgClass: "-top-[40px] w-[55px]" 
+    },
+    { 
+      val: `${remainingL}L`, 
+      line2: "to go", 
+      line3: "Remaining", 
+      img: "/src/assets/water2.png",
+      imgClass: "-top-[20px] w-[50px]" 
+    },
+    { 
+      val: minutesAgo !== null ? `${minutesAgo}m` : "0m", 
+      line2: "ago", 
+      line3: "Last Log", 
+      img: "/src/assets/water3.png",
+      imgClass: "-top-[15px] w-[55px]" 
+    },
   ];
 
   return (
-    <div className="grid grid-cols-3 gap-2.5">
-      {items.map(s => (
-        <Card key={s.label} className="text-center py-2.5 px-1.5">
-          <div className="font-caveat text-[26px] font-bold text-p-green">{s.val}</div>
-          <div className="font-caveat text-[13px] text-p-muted">{s.unit}</div>
-          <div className="font-caveat text-[11px] text-p-ink/50 uppercase tracking-tighter">{s.label}</div>
-        </Card>
+    <div className="summary-container">
+      {items.map((item, index) => (
+        <div key={index} className="summary-card">
+          <img 
+            src={item.img} 
+            className={`summary-img-base ${item.imgClass}`} 
+            alt={item.line3} 
+            onError={(e) => { e.currentTarget.style.display = 'none'; }} 
+          />
+          <p className="summary-text">
+            {item.val}<br />
+            {item.line2}<br />
+            {item.line3}
+          </p>
+        </div>
       ))}
     </div>
   );

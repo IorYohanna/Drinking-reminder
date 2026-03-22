@@ -19,8 +19,8 @@ export const Btn = ({
 }: BtnProps) => {
 
     const variantStyles: Record<BtnVariant, string> = {
-        primary: "bg-p-green text-white btn-shadow-standard",
-        secondary: "bg-p-paper text-p-ink btn-shadow-standard",
+        primary: "text-white btn-shadow-standard",
+        secondary: "btn-shadow-standard",
         ghost: "btn-ghost",
     };
 

@@ -1,3 +1,5 @@
+import type { JSX } from "react";
+
 export interface DrinkLog {
   id: number;
   ml: number;
@@ -26,12 +28,18 @@ export interface DrinkType {
   color: string;
 }
 
-export interface QuickAmount {
-  ml: number;
-  icon: string;
+export interface WaterSize {
+  id: 'small' | 'medium' | 'large' | 'custom';
   label: string;
+  ml: number;
+  desc: string;
 }
 
+export interface Tab { 
+  id: TabId; 
+  label: string; 
+  icon: JSX.Element 
+}
 
 export type TabId = "home" | "history" | "reminders" | "profile";
 export type BtnVariant = "primary" | "secondary" | "ghost";

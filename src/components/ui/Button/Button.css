@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 .btn-base {
-  @apply border-[2.5px] border-p-ink rounded-[10px] font-caveat font-bold 
+  @apply border-[2.5px] rounded-[10px] font-bold 
          cursor-pointer transition-all duration-75 px-4.5 py-2.5 
          active:translate-x-0.5 active:translate-y-0.5 relative;
   filter: url(#sk);
@@ -12,5 +12,5 @@
 }
 
 .btn-ghost {
-  @apply bg-transparent text-p-ink shadow-none border-2 border-p-ink;
+  @apply bg-transparent shadow-none border-2 ;
 }

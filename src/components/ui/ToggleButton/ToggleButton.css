@@ -1,19 +1,15 @@
 @import "tailwindcss";
 
 .toggle-rail {
-  @apply relative shrink-0 w-11 h-6 rounded-xl border-2 border-p-ink 
+  @apply relative shrink-0 w-11 h-6 rounded-xl border-2 
          transition-colors duration-200 cursor-pointer outline-none;
   filter: url(#sk);
 }
 
 .toggle-handle {
   @apply absolute top-[1px] left-[1px] w-4.5 h-4.5 bg-white 
-         rounded-full border-2 border-p-ink transition-transform duration-200;
+         rounded-full border-2 transition-transform duration-200;
   filter: url(#sk);
-}
-
-.toggle-rail-enabled {
-  @apply bg-p-green;
 }
 
 .toggle-rail-disabled {

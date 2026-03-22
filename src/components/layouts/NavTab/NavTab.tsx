@@ -9,8 +9,8 @@ interface NavTabProps {
 
 export const NavTab = ({ icon, label, active, onClick }: NavTabProps) => {
   const activeStyles = active 
-    ? "text-p-green font-bold border-p-green" 
-    : "text-p-muted font-medium border-transparent";
+    ? "font-bold " 
+    : "font-medium border-transparent";
 
   return (
     <button 

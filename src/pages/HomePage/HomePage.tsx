@@ -1,16 +1,12 @@
 import { useState, useMemo } from "react";
 import type { DrinkLog } from "../../type/types";
-import { KEYS, QUICK_AMOUNTS } from "../../utils/constants";
+import { KEYS, WATER_SIZES as SIZES } from "../../utils/constants";
 import { save, computeStreak } from "../../utils/utils";
+import Modal from "../../components/ui/Modal";
+import { GoalSelector } from "../../components/pages/Home/GoalSelector";
+import { SummaryCards } from "../../components/pages/Home/SummyCards";
 import { CircleProgress } from "../../components/layouts/CircleProgress";
 import "./HomePage.css";
-import { Card } from "../../components/ui/Card";
-import { TI } from "../../components/ui/TextInput";
-import { Btn } from "../../components/ui/Button";
-import Modal from "../../components/ui/Modal";
-import { SummaryCards } from "../../components/pages/Home/SummyCards";
-import { TodayFeed } from "../../components/pages/Home/TodayFeed";
-import { GoalSelector } from "../../components/pages/Home/GoalSelector";
 
 interface Props {
     logs: DrinkLog[];
@@ -20,9 +16,8 @@ interface Props {
 }
 
 export default function HomePage({ logs, setLogs, goal, setGoal }: Props) {
-    const [selAmt, setSelAmt] = useState<number>(250);
-    const [selType, setSelType] = useState<string>("water");
-    const [customMode, setCustomMode] = useState<boolean>(false);
+    const [selSize, setSelSize] = useState<string>("small");
+    const [quantity, setQuantity] = useState<number>(1);
     const [customAmt, setCustomAmt] = useState<string>("");
     const [goalModal, setGoalModal] = useState<boolean>(false);
     const [goalInput, setGoalInput] = useState<number>(goal);
@@ -35,26 +30,26 @@ export default function HomePage({ logs, setLogs, goal, setGoal }: Props) {
         const totalL = +(totalMl / 1000).toFixed(2);
         const pct = Math.min(100, Math.round((totalMl / (goal * 1000)) * 100));
         const streak = computeStreak(logs, goal);
-
         return { todayLogs, totalL, pct, streak };
     }, [logs, goal]);
 
-    const handleUpdateLogs = (next: DrinkLog[]) => {
-        setLogs(next);
-        save(KEYS.logs, next);
-    };
+    const currentSizeObj = SIZES.find(s => s.id === selSize) || SIZES[0];
 
     const addLog = () => {
-        const ml = customMode ? Number(customAmt) : selAmt;
-        if (!ml || ml <= 0) return;
+        const baseMl = selSize === 'custom' ? Number(customAmt) : currentSizeObj.ml;
+        if (!baseMl || baseMl <= 0) return;
 
-        const newEntry: DrinkLog = { id: Date.now(), ml, type: selType, ts: Date.now() };
-        handleUpdateLogs([newEntry, ...logs]);
+        const ml = baseMl * quantity;
+        const newEntry: DrinkLog = { id: Date.now(), ml, type: "water", ts: Date.now() };
+        const nextLogs = [newEntry, ...logs];
+
+        setLogs(nextLogs);
+        save(KEYS.logs, nextLogs);
 
         setPop(true);
         setTimeout(() => setPop(false), 500);
-        setCustomAmt("");
-        setCustomMode(false);
+        setQuantity(1);
+        if (selSize === 'custom') setCustomAmt("");
     };
 
     const saveGoal = () => {
@@ -64,58 +59,92 @@ export default function HomePage({ logs, setLogs, goal, setGoal }: Props) {
     };
 
     return (
-        <div className="home-page-container">
-            <header className="flex justify-between items-start">
-                <div className="status-text">
-                    <p className="date-label">{new Date().toLocaleDateString("en-US", { weekday: "long", month: "short", day: "numeric" })}</p>
-                    <h1 className="status-title">{stats.pct >= 100 ? "Goal reached! 🎉" : stats.pct >= 60 ? "Keep going! 🌊" : "Stay hydrated! 💧"}</h1>
-                </div>
-                <button onClick={() => setGoalModal(true)} className="goal-badge">
-                    <span className="goal-label">Goal</span>
-                    <span className="goal-value">{goal}L</span>
-                </button>
-            </header>
+        <div className="home-container">
+            <div className="header-wave" />
 
-            <div className="flex justify-center py-2">
-                <div className={`progress-wrapper ${pop ? 'pop-active' : ''}`}>
-                    <CircleProgress pct={stats.pct} total={goal} current={stats.totalL} />
+            <div className="content-wrapper">
+                <div className={`progress-section ${pop ? 'pop-effect' : ''}`}>
+                    <CircleProgress
+                        pct={stats.pct}
+                        total={goal}
+                        current={stats.totalL}
+                        onGoalClick={() => setGoalModal(true)}
+                    />
+                </div>
+
+                <div className="w-full -mt-5">
+                    <SummaryCards stats={stats} goal={goal} />
+                </div>
+
+
+                <div className="w-full max-w-95">
+                    <h2 className="text-black text-xl mb-2 pl-2">Size</h2>
+                    <div className="bg-[#D9D9D9] rounded-[30px] p-1 flex justify-between relative">
+                        {SIZES.map(s => (
+                            <button
+                                key={s.id}
+                                onClick={() => {
+                                    setSelSize(s.id);
+                                    setQuantity(1);
+                                }}
+                                className={`flex-1 py-1.5 text-center rounded-[30px] text-[15px] transition-all duration-300
+                  ${selSize === s.id ? 'bg-[#2D466E] text-[#F5F0E8]' : 'text-black hover:bg-[#c0c0c0]'}`}
+                            >
+                                {s.label}
+                            </button>
+                        ))}
+                    </div>
+                </div>
+
+                <div className="w-full pl-2 max-w-95">
+                    <h3 className="text-black text-[17px]">About</h3>
+                    <p className="text-[#43414C] text-[12px] mt-0.5 leading-snug">
+                        {currentSizeObj.desc}
+                    </p>
+                </div>
+
+                <div className="w-full px-2 flex justify-between items-center max-w-95">
+                    <div className="flex gap-4 items-center">
+                        <span className="text-[#43414C] text-lg">Volume</span>
+                        {selSize === 'custom' ? (
+                            <input
+                                type="number"
+                                value={customAmt}
+                                onChange={e => setCustomAmt(e.target.value)}
+                                className="bg-transparent border-b border-[#43414C] w-15 text-black text-lg outline-none"
+                                placeholder="ml"
+                            />
+                        ) : (
+                            <span className="text-black text-xl font-bold">{currentSizeObj.ml * quantity}ml</span>
+                        )}
+                    </div>
+
+                    <div className="flex items-center justify-between border-2 border-[#43414C] rounded-[30px] bg-[#F5F0E8] px-3 py-1 w-20">
+                        <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="text-black font-bold text-lg hover:text-[#2D466E]">-</button>
+                        <span className="text-black text-lg">{quantity}</span>
+                        <button onClick={() => setQuantity(quantity + 1)} className="text-black font-bold text-lg hover:text-[#2D466E]">+</button>
+                    </div>
+                </div>
+
+                <div className="w-full flex justify-center">
+                    <button onClick={addLog} className="log-button">
+                        <img src="/src/assets/LogBtn.png" alt="Log" className="w-60 h-auto" />
+                    </button>
                 </div>
             </div>
 
-            <SummaryCards stats={stats} goal={goal} />
-
-            <section className="quick-add">
-                <p className="section-label">Quick add</p>
-                <div className="scroll-x-container">
-                    {QUICK_AMOUNTS.map(q => (
-                        <button
-                            key={q.ml}
-                            onClick={() => { setSelAmt(q.ml); setCustomMode(false); }}
-                            className={`amount-btn ${selAmt === q.ml && !customMode ? 'active' : ''}`}
-                        >
-                            <span className="icon">{q.icon}</span>
-                            <span className="ml">{q.ml}ml</span>
-                        </button>
-                    ))}
-                    <button onClick={() => setCustomMode(true)} className={`amount-btn ${customMode ? 'active' : ''}`}>
-                        <span className="icon">✏️</span>
-                        <span>Custom</span>
-                    </button>
-                </div>
-            </section>
-
-            {customMode && (
-                <Card className="p-3 animate-in">
-                    <TI type="number" value={customAmt} onChange={e => setCustomAmt(e.target.value)} placeholder="Amount in ml..." />
-                </Card>
-            )}
-
-            <Btn onClick={addLog} className="log-btn">💧 LOG DRINK</Btn>
-
-            <TodayFeed logs={stats.todayLogs} onRemove={(id) => handleUpdateLogs(logs.filter(l => l.id !== id))} />
-
-            <Modal open={goalModal} onClose={() => setGoalModal(false)} title="Daily goal 🎯">
-                <GoalSelector value={goalInput} onChange={setGoalInput} onSave={saveGoal} />
+            <Modal
+                open={goalModal}
+                title="DAILY GOAL"
+                backgroundImageUrl="/src/assets/dailyGoal.png"
+                backgroundOpacity={0.5}
+                onClose={() => setGoalModal(false)}
+            >
+                <GoalSelector
+                    value={goal}
+                    onChange={setGoal}
+                    onSave={saveGoal}
+                />
             </Modal>
         </div>
     );

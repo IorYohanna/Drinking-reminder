@@ -1,34 +1,28 @@
 @import "tailwindcss";
 
 .circle-progress-container {
-  @apply relative flex items-center justify-center w-[240px] h-[240px];
+  @apply relative flex items-center justify-center w-65 h-65 rounded-full shadow-[0_5px_15px_rgba(0,0,0,0.15)] bg-[#F5F0E8] font-['Nova_Square',sans-serif];
 }
 
 .circle-bg {
-  @apply fill-none stroke-[#e4d4bf] stroke-[6] transition-all duration-500;
+  @apply fill-none stroke-[#D9D9D9] stroke-6 transition-all duration-500 opacity-50;
   stroke-dasharray: 8 4;
 }
 
 .circle-indicator {
-  @apply fill-none stroke-[7] transition-[stroke-dasharray] duration-700 ease-in-out;
+  @apply fill-none stroke-8 transition-[stroke-dasharray] duration-700 ease-in-out;
   stroke-linecap: round;
-  filter: url(#sk); 
-}
-
-.circle-inner-border {
-  @apply w-59 h-59 rounded-full border-[3px] border-p-ink absolute pointer-events-none;
-  filter: url(#sk2);
 }
 
 .progress-text-pct {
-  @apply font-caveat text-[42px] font-bold text-white leading-none;
-  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
+  @apply text-[50px] font-bold text-black leading-none drop-shadow-sm;
 }
 
 .progress-text-sub {
-  @apply font-caveat text-[22px] text-white/80 mt-0.5;
+  @apply text-[20px] text-[#43414C] mt-2 font-bold hover:scale-105 transition-transform cursor-pointer;
 }
 
-.progress-text-label {
-  @apply font-caveat text-base text-white/60;
+@keyframes wave {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }

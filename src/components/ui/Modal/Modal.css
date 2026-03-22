@@ -1,26 +1,47 @@
 @import "tailwindcss";
 
 .modal-overlay {
-  @apply fixed inset-0 z-50 flex items-end justify-center bg-black/45;
-  backdrop-filter: blur(2px); 
+  @apply fixed inset-0 z-50 flex items-center justify-center bg-black/45;
+  backdrop-filter: blur(4px); 
 }
 
 .modal-content {
-  @apply bg-p-paper border-[3px] border-p-ink rounded-t-[20px] 
-         w-full max-w-[420px] px-5 pt-6 pb-10 max-h-[88vh] 
-         overflow-y-auto relative;
+  @apply bg-[#84C1F8] rounded-[40px] border-none
+          w-[90%] max-w-95 p-6 max-h-[90vh] 
+          overflow-hidden relative shadow-2xl;
+  
   filter: url(#sk2);
 
-  animation: slide-up 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: modal-pop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-@keyframes slide-up {
-  from { transform: translateY(100%); }
-  to { transform: translateY(0); }
+.modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: var(--bg-image);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: var(--bg-opacity); 
+    z-index: 0;
+    pointer-events: none;
+}
+
+.modal-content h2 {
+  @apply font-[bungee] text-white text-center w-full text-[28px] uppercase tracking-wide;
 }
 
 .modal-close-btn {
-  @apply font-caveat text-[26px] 
-  bg-transparent border-none cursor-pointer 
-  text-p-muted hover:text-p-ink transition-colors;
+  @apply absolute top-5 right-6 text-white/90 hover:text-white 
+          text-[24px] bg-transparent border-none cursor-pointer 
+          transition-all hover:scale-110 z-50;
+}
+
+@keyframes modal-pop {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
 }

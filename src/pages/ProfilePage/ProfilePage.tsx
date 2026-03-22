@@ -49,25 +49,25 @@ export default function ProfilePage({ goal, setGoal, logs }: ProfilePageProps) {
 
   return (
     <div className="profile-container">
-      <h2 className="font-caveat text-[32px] font-bold text-p-ink">Profile 🐱</h2>
+      <h2 className="text-[32px] font-bold">Profile 🐱</h2>
 
       <Card className="flex items-center gap-4">
         <div className="profile-avatar">🐱</div>
         <div>
-          <div className="font-caveat text-[26px] font-bold text-p-ink">{profile.name}</div>
-          <div className="font-caveat text-[15px] text-p-muted">
+          <div className="text-[26px] font-bold">{profile.name}</div>
+          <div className="text-[15px]">
             {stats.daysActive} days · {(stats.totalLogged / 1000).toFixed(1)}L total · {stats.streak}🔥
           </div>
         </div>
       </Card>
 
       <Card>
-        <p className="font-caveat text-base text-p-muted mb-1.5">Your name</p>
+        <p className="text-base mb-1.5">Your name</p>
         <TI value={profile.name} onChange={e => updateProfile({ name: e.target.value })} />
       </Card>
 
       <Card>
-        <p className="font-caveat text-base text-p-muted mb-1.5">Weight — for suggestion</p>
+        <p className="text-base mb-1.5">Weight — for suggestion</p>
         <div className="flex gap-2.5 items-center">
           <TI type="number" value={profile.weight} onChange={e => updateProfile({ weight: Number(e.target.value) })} className="flex-1" />
           <div className="flex gap-1">
@@ -82,23 +82,23 @@ export default function ProfilePage({ goal, setGoal, logs }: ProfilePageProps) {
             ))}
           </div>
         </div>
-        <div className="mt-3 p-3 bg-p-greenLight/30 rounded-lg border border-p-green/20">
-          <p className="font-caveat text-[15px] text-p-green">💡 Suggested: {suggestedGoal}L/day</p>
+        <div className="mt-3 p-3 rounded-lg border">
+          <p className="text-[15px]">💡 Suggested: {suggestedGoal}L/day</p>
           <button onClick={applySuggested} className="suggested-btn">
             Use {suggestedGoal}L as my goal
           </button>
         </div>
       </Card>
 
-      <Card className="border-[2.5px] border-p-accent mt-4">
-        <p className="font-caveat text-lg font-bold text-p-accent mb-1">Reset data</p>
-        <p className="font-caveat text-sm text-p-muted mb-3">Permanently delete all drink logs stored on this device.</p>
+      <Card className="border-[2.5px] mt-4">
+        <p className="text-lg font-bold mb-1">Reset data</p>
+        <p className="text-sm mb-3">Permanently delete all drink logs stored on this device.</p>
         <button onClick={handleReset} className="danger-btn">
           🗑️ Clear all logs
         </button>
       </Card>
 
-      <p className="font-caveat text-[13px] text-p-muted text-center italic">
+      <p className="text-[13px] text-center italic">
         All data stored locally on this device only 🔒
       </p>
     </div>

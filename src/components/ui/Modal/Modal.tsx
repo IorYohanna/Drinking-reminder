@@ -6,9 +6,12 @@ interface ModalProps {
     onClose: () => void;
     title: string;
     children: ReactNode;
+    backgroundColor?: string;
+    backgroundImageUrl?: string; 
+    backgroundOpacity?: number;
 }
 
-const Modal = ({ open, onClose, title, children }: ModalProps) => {
+const Modal = ({ open, onClose, title, children, backgroundColor, backgroundImageUrl, backgroundOpacity }: ModalProps) => {
     useEffect(() => {
         if (open) {
             document.body.style.overflow = 'hidden';
@@ -20,26 +23,33 @@ const Modal = ({ open, onClose, title, children }: ModalProps) => {
 
     if (!open) return null;
 
+   const modalStyle = {
+        backgroundColor: backgroundColor || undefined,
+        "--bg-image": backgroundImageUrl ? `url(${backgroundImageUrl})` : "none",
+        "--bg-opacity": backgroundOpacity,
+    } as React.CSSProperties;
+
     return (
         <div className="modal-overlay" onClick={onClose}>
             <div
                 className="modal-content"
+                style={modalStyle}
                 onClick={(e) => e.stopPropagation()}
             >
-                <div className="flex justify-between items-center mb-4.5">
-                    <h2 className="font-caveat text-[26px] font-bold text-p-ink m-0">
+                <div className="relative flex items-center justify-center mb-4.5">
+                    <h2 className="text-[26px] font-bold m-0 text-center text-white">
                         {title}
                     </h2>
                     <button
                         onClick={onClose}
-                        className="modal-close-btn"
+                        className="modal-close-btn absolute right-0 text-white/80 hover:text-white"
                         aria-label="Close modal"
                     >
                         ✕
                     </button>
                 </div>
 
-                <div className="modal-body">
+                <div className="modal-body relative z-10">
                     {children}
                 </div>
             </div>
