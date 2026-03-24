@@ -21,13 +21,6 @@ export interface Profile {
   unit: "metric" | "imperial";
 }
 
-export interface DrinkType {
-  id: string;
-  label: string;
-  icon: string;
-  color: string;
-}
-
 export interface WaterSize {
   id: 'small' | 'medium' | 'large' | 'custom';
   label: string;

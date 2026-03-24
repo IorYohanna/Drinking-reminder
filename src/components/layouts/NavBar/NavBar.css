@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+.nav-container {
+  @apply absolute bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-94 h-15 
+         bg-[#2D466E] rounded-[20px] flex items-center justify-around 
+         z-40 shadow-[0_10px_20px_rgba(45,70,110,0.3)] px-3;
+}
+
+.nav-button {
+  @apply relative flex items-center justify-center w-12 h-12 rounded-2xl transition-all duration-300;
+}
+
+.nav-active-bg {
+  @apply absolute inset-0 bg-[#F5F0E8] rounded-2xl shadow-sm transform scale-100 transition-transform duration-300;
+}
+
+.nav-icon {
+  @apply relative z-10 transition-colors duration-300;
+}

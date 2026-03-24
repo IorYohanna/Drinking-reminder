@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+.toast-container {
+  @apply fixed top-6 left-1/2 -translate-x-1/2 z-[100] 
+         bg-[#F5F0E8] border border-[#2D466E]/20 rounded-3xl 
+         py-4 px-6 flex items-center gap-4 shadow-xl 
+         max-w-90 w-[90%] transition-all duration-300;
+}
+
+.toast-icon {
+  @apply text-[32px];
+}
+
+.toast-title {
+  @apply text-[17px] font-bold text-[#2D466E];
+}
+
+.toast-subtitle {
+  @apply text-[14px] text-[#43414C] font-medium;
+}
+
+.toast-close {
+  @apply ml-auto w-8 h-8 bg-black/5 hover:bg-black/10 
+         rounded-full flex items-center justify-center 
+         text-[#43414C] transition-colors;
+}

@@ -1,1 +1,97 @@
-/* HistoryPage Styles */
+.history-page-root {
+    background-color: #ffffff;
+    height: 100vh;
+    width: 100%;
+    font-family: 'Nova Square', sans-serif;
+    overflow-x: hidden;
+}
+
+.sticky-header {
+    background-color: #84C1F8;
+    position: sticky;
+    top: 0;
+    height: 240px; 
+    width: 100%;
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+    padding: 40px 32px 0 32px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    z-index: 20;
+}
+
+.header-title {
+    font-family: 'Bungee', cursive;
+    color: #F5F0E8;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    line-height: 1.25;
+    margin: 0;
+}
+
+.header-subtitle {
+    color: #1E1E1E;
+    font-size: 15px;
+    margin-top: 4px;
+    line-height: 1.25;
+    width: 128px;
+}
+
+.calendar-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 32px;
+}
+
+.calendar-day-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.day-name {
+    color: #F5F0E8;
+    font-size: 12px;
+}
+
+.date-circle {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    background-color: #ffffff;
+    color: #000000;
+    font-size: 18px;
+    font-weight: bold;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.history-content-section {
+    padding-left: 32px;
+    padding-right: 32px;
+    padding-bottom: 80px;
+}
+
+.history-main-title {
+    font-family: 'Bungee', cursive;
+    color: #2D466E;
+    font-size: 1.25rem;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.history-empty-state {
+    color: #9ca3af;
+    text-align: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.history-list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding-bottom: 16px;
+}

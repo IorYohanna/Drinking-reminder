@@ -20,7 +20,7 @@ export default function HomePage({ logs, setLogs, goal, setGoal }: Props) {
     const [quantity, setQuantity] = useState<number>(1);
     const [customAmt, setCustomAmt] = useState<string>("");
     const [goalModal, setGoalModal] = useState<boolean>(false);
-    const [goalInput, setGoalInput] = useState<number>(goal);
+    const [goalInput] = useState<number>(goal);
     const [pop, setPop] = useState<boolean>(false);
 
     const stats = useMemo(() => {

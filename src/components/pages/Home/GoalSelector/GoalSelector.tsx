@@ -1,5 +1,3 @@
-import { TI } from "../../../ui/TextInput";
-
 interface GoalSelectorProps {
   value: number;
   onChange: (v: number) => void;
@@ -12,7 +10,6 @@ export const GoalSelector = ({ value, onChange, onSave }: GoalSelectorProps) => 
   return (
     <div className="relative flex flex-col items-center w-full">
       <div className="relative z-10 w-full flex flex-col items-center">
-        {/* Section Custom Goal */}
         <div className="w-full bg-white/20 backdrop-blur-md border border-white/30 rounded-[30px] p-4 mb-6 flex flex-col items-center shadow-sm">
           <p className="text-[#43414C] font-novaSquare text-sm mb-1">Choose Your Daily Goal</p>
           <div className="flex items-center gap-1 font-novaSquare font-bold">
@@ -32,7 +29,7 @@ export const GoalSelector = ({ value, onChange, onSave }: GoalSelectorProps) => 
             <button
               key={g}
               onClick={() => onChange(g)}
-              className={`h-[100px] rounded-[30px] backdrop-blur-md border transition-all flex items-center justify-center ${
+              className={`h-25 rounded-[30px] backdrop-blur-md border transition-all flex items-center justify-center ${
                 value === g 
                   ? 'bg-[#2D466E]/40 border-white/50 scale-[0.98]' 
                   : 'bg-white/20 border-white/30 hover:bg-white/30'
@@ -44,10 +41,9 @@ export const GoalSelector = ({ value, onChange, onSave }: GoalSelectorProps) => 
             </button>
           ))}
 
-          {/* Bouton SAVE au centre de la grille */}
           <button 
             onClick={onSave}
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[55px] h-[55px] bg-[#43414C] rounded-full border-2 border-white/50 shadow-lg flex items-center justify-center hover:scale-110 active:scale-90 transition-all z-20"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-13.75 h-13.75 bg-[#43414C] rounded-full border-2 border-white/50 shadow-lg flex items-center justify-center hover:scale-110 active:scale-90 transition-all z-20"
           >
             <span className="text-white font-novaSquare text-[12px]">save</span>
           </button>
