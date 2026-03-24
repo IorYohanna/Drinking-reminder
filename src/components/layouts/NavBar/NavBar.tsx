@@ -49,7 +49,7 @@ const TABS: Tab[] = [
 
 export default function Navbar({ currentTab, onTabChange }: NavbarProps) {
     return (
-        <nav className="nav-container">
+        <nav className="nav-container no-drag">
             {TABS.map((t) => {
                 const isActive = currentTab === t.id;
                 return (

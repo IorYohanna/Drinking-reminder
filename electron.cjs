@@ -4,9 +4,9 @@ let mainWindow;
 
 function createWindow() {
   mainWindow = new BrowserWindow({
-    title: "Pomodoro",
-    width: 600,
-    height: 600,
+    title: "Drinking Reminder",
+    width: 510,
+    height: 864,
     frame: false,
     titleBarStyle: "hidden",
     webPreferences: {

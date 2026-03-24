@@ -61,7 +61,6 @@ export default function HomePage({ logs, setLogs, goal, setGoal }: Props) {
     return (
         <div className="home-container">
             <div className="header-wave" />
-
             <div className="content-wrapper">
                 <div className={`progress-section ${pop ? 'pop-effect' : ''}`}>
                     <CircleProgress
@@ -72,12 +71,12 @@ export default function HomePage({ logs, setLogs, goal, setGoal }: Props) {
                     />
                 </div>
 
-                <div className="w-full -mt-5">
+                <div className="w-full -mt-5 no-drag">
                     <SummaryCards stats={stats} goal={goal} />
                 </div>
 
 
-                <div className="w-full max-w-95">
+                <div className="w-full max-w-95 no-drag">
                     <h2 className="text-black text-xl mb-2 pl-2">Size</h2>
                     <div className="bg-[#D9D9D9] rounded-[30px] p-1 flex justify-between relative">
                         {SIZES.map(s => (
@@ -96,14 +95,14 @@ export default function HomePage({ logs, setLogs, goal, setGoal }: Props) {
                     </div>
                 </div>
 
-                <div className="w-full pl-2 max-w-95">
+                <div className="w-full pl-2 max-w-95 no-drag">
                     <h3 className="text-black text-[17px]">About</h3>
                     <p className="text-[#43414C] text-[12px] mt-0.5 leading-snug">
                         {currentSizeObj.desc}
                     </p>
                 </div>
 
-                <div className="w-full px-2 flex justify-between items-center max-w-95">
+                <div className="w-full px-2 flex justify-between items-center max-w-95 no-drag">
                     <div className="flex gap-4 items-center">
                         <span className="text-[#43414C] text-lg">Volume</span>
                         {selSize === 'custom' ? (
@@ -126,7 +125,7 @@ export default function HomePage({ logs, setLogs, goal, setGoal }: Props) {
                     </div>
                 </div>
 
-                <div className="w-full flex justify-center">
+                <div className="w-full flex justify-center no-drag">
                     <button onClick={addLog} className="log-button">
                         <img src="/src/assets/LogBtn.png" alt="Log" className="w-60 h-auto" />
                     </button>

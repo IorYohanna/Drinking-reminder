@@ -62,7 +62,7 @@ export default function HistoryPage({ logs, setLogs, goal }: HistoryPageProps) {
                 <p className="header-subtitle">
                     How Much Did You Drink Today?
                 </p>
-                <div className="calendar-container">
+                <div className="calendar-container no-drag">
                     {calendarDays.map((day, i) => (
                         <div key={i} className="calendar-day-item">
                             <span className="day-name">{day.name}</span>
@@ -76,7 +76,7 @@ export default function HistoryPage({ logs, setLogs, goal }: HistoryPageProps) {
 
             <TodayFeed logs={logs} />
 
-            <div className="history-content-section">
+            <div className="history-content-section no-drag">
                 <h3 className="history-main-title">History</h3>
                 {sortedDays.length === 0 ? (
                     <div className="history-empty-state">No History Yet</div>

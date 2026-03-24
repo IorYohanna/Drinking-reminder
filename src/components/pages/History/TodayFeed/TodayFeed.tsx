@@ -52,7 +52,7 @@ export const TodayFeed = ({ logs }: TodayFeedProps) => {
     }, [logs]);
 
     return (
-        <div className="px-8 mt-5">
+        <div className="px-8 mt-5 no-drag">
             <h2 className="font-[Bungee] text-[#2D466E] text-2xl leading-7.25 w-48 mb-5 uppercase">
                 Your Drink Progress
             </h2>

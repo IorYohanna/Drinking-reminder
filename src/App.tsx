@@ -46,7 +46,7 @@ export default function App() {
   }, [reminders]);
 
   return (
-    <main className="bg-[#EAE5DF] text-black font-novaSquare relative w-full h-screen overflow-hidden">
+    <main className="bg-[#EAE5DF] text-black drag-region font-novaSquare relative w-full h-screen overflow-hidden">
 
       <Notif data={toast} onClose={() => setToast(null)} />
 

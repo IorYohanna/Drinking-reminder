@@ -18,7 +18,7 @@ export const DayGroup = ({ day, logs, goal, onRemove, onClear }: DayGroupProps) 
   });
 
   return (
-    <div className="border-l-4 border-[#84C1F8] pl-4">
+    <div className="border-l-4 border-[#84C1F8] pl-4 no-drag">
       <div className="flex justify-between items-end mb-4">
         <div>
           <p className="text-[14px] text-gray-400 uppercase font-bold tracking-wider">
