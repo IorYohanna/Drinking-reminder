@@ -1,0 +1,66 @@
+
+.Loading-root {
+    position: absolute;
+    inset: 0;
+    z-index: 100;
+    background-color: #84C1F8;
+    overflow: hidden;
+    transition: transform 1000ms ease-in-out;
+    transform: translateY(0);
+}
+
+.Loading-root.is-exiting {
+    transform: translateY(-100%);
+}
+
+.Loading-logo-img {
+    position: absolute;
+    width: 510px;
+    height: 600px;
+    left: -81px;
+    top: 417px;
+    max-width: none;
+    pointer-events: none;
+}
+
+.Loading-bg-text {
+    position: absolute;
+    color: rgba(245, 240, 232, 0.30);
+    font-family: 'Bungee', cursive;
+    font-size: 110px;    left: 19px;
+    top: 280px;
+    user-select: none;
+    margin: 0;
+    line-height: 1;
+}
+
+.Loading-header-container {
+    position: absolute;
+    top: 22px;
+    width: 100%;
+    text-align: center;
+}
+
+.Loading-hello-text {
+    color: #F5F0E8;
+    font-family: 'Bungee', cursive;
+    font-size: 16px;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.Loading-welcome-container {
+    position: absolute;
+    top: 166px;
+    width: 100%;
+    text-align: center;
+    padding: 0 40px;
+}
+
+.Loading-welcome-text {
+    color: #F5F0E8;
+    font-family: 'Bungee', cursive;
+    font-size: 32px;
+    line-height: 1.2;
+    margin: 0;
+}
